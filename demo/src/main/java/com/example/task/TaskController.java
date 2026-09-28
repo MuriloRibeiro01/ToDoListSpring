@@ -49,7 +49,7 @@ public class TaskController {
             .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
 
         // Getters e Setters
-        task.setName(taskDetails.getName());
+        task.setNome(taskDetails.getNome());
         task.setDescricao(taskDetails.getDescricao());
         task.setPrioridade(taskDetails.getPrioridade());
 
