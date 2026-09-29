@@ -1,0 +1,18 @@
+.tasksTable {
+    background-color: aqua;
+    border-radius: 10px;
+}
+
+.TaskTableContainer {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DeleteButton {
+    background-color: red;
+    height: 20px;
+    width: 30px;
+    border-radius: 10px;
+}
