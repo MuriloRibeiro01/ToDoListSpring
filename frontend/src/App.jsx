@@ -6,16 +6,10 @@ import MyButton from './components/MyButton';
 import CreateTask from './components/CreateTask';
 
 function App() {
-
-  function alertar() {
-    alert('oiee');
-  }
     
   return (
 
     <div>
-      <p>oiee</p>
-      <MyButton onClick={alertar}>oiee</MyButton>
       <CreateTask />
       <TaskList></TaskList>
     </div>
