@@ -1,0 +1,17 @@
+.formContainer {
+    background-color: violet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputStyle {
+    width: 200px;
+}
+
+.AddButton {
+    background-color: aquamarine;
+    height: 20px;
+    border-radius: 10px;
+}
