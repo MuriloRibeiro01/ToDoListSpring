@@ -1,5 +1,6 @@
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Styles from './CreateTask.module.css';
 import { useState } from 'react';
 
 function CreateTask({  }) {
@@ -12,6 +13,8 @@ function CreateTask({  }) {
     const [prioridade, setPrioridade] = useState(null);
 
     const enviarTask = async (e) => {
+
+        e.preventDefault();
 
         try {
 
@@ -50,20 +53,23 @@ function CreateTask({  }) {
     }
 
     return (
-        <form onSubmit={enviarTask}>
+        <form onSubmit={enviarTask} className={Styles.formContainer}>
             <h1>Adicionar tarefa</h1>
 
-            <input type="text" value={tarefa.nome} onChange={handleChange} name='nome' placeholder="Nome" />
-            <input type="text" value={tarefa.descricao} onChange={handleChange} name='descricao' placeholder="Descrição" />
-            <Autocomplete 
-                value={prioridade}
-                onChange={handlePrioridade}
-                options={["ALTA", "MEDIA", "BAIXA"]}
-                renderInput={(prioridade) => 
-                    <TextField {...prioridade} label="Prioridade" variant="outlined"/>
-                }
-            />  
-            <button type='submit'>Adicionar</button>
+            <div>
+                <input className={Styles.inputStyle} type="text" value={tarefa.nome} onChange={handleChange} name='nome' placeholder="Nome" />
+                <input className={Styles.inputStyle} type="text" value={tarefa.descricao} onChange={handleChange} name='descricao' placeholder="Descrição" />
+                <Autocomplete 
+                    className={Styles.inputStyle}
+                    value={prioridade}
+                    onChange={handlePrioridade}
+                    options={["ALTA", "MEDIA", "BAIXA"]}
+                    renderInput={(prioridade) => 
+                        <TextField {...prioridade} label="Prioridade" variant="outlined"/>
+                    }
+                />  
+            </div>
+            <button className={Styles.AddButton} type='submit'>Adicionar</button>
 
         </form>
     )
