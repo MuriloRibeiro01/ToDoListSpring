@@ -2,6 +2,7 @@ package com.example.task;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/tasks")
 public class TaskController {
 
@@ -34,7 +36,7 @@ public class TaskController {
         return taskRepository.findAll();
     }
 
-    @GetMapping("/api/tasks/{id}")
+    @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Long id) {
         // Acha aquela tarefa ou joga um erro
         return taskRepository.findById(id)
@@ -42,7 +44,7 @@ public class TaskController {
     }
 
     // taskDetails é um objeto que guarda o json de retorno.
-    @PutMapping("/api/tasks/{id}")
+    @PutMapping("/{id}")
     public Task updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
         
         Task task = taskRepository.findById(id)
@@ -57,7 +59,7 @@ public class TaskController {
         
     }
 
-    @DeleteMapping("/api/tasks/{id}")
+    @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
     }
