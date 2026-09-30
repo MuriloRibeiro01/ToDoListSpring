@@ -2,14 +2,14 @@ import { useEffect, useState, View, Button } from 'react';
 
 import './App.css';
 import TaskList from './components/TaskList';
-import MyButton from './components/MyButton';
 import CreateTask from './components/CreateTask';
+import Styles from './App.module.css';
 
 function App() {
     
   return (
 
-    <div>
+    <div className={Styles.AppContainer}>
       <CreateTask />
       <TaskList></TaskList>
     </div>
