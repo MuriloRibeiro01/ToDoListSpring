@@ -7,6 +7,7 @@ async function DeletarTarefa(id) {
     } catch (e) {
         console.error("Erro ao deletar tarefa", e);
     }    
+    window.location.reload(true);
 
 }
 
