@@ -28,8 +28,10 @@ function CreateTask({  }) {
 
             if (response.ok) {
                 const dados = await response.json();
-                return dados;
+                window.location.reload(true);
+                return dados;                
             }
+            
 
         } catch (e) {
             console.error("Não deu pra buscar as parada.")
@@ -53,25 +55,28 @@ function CreateTask({  }) {
     }
 
     return (
-        <form onSubmit={enviarTask} className={Styles.formContainer}>
-            <h1>Adicionar tarefa</h1>
+        <div className={Styles.container}>
+            <form onSubmit={enviarTask} className={Styles.formContainer}>
+                <h1>Adicionar tarefa</h1>
 
-            <div>
-                <input className={Styles.inputStyle} type="text" value={tarefa.nome} onChange={handleChange} name='nome' placeholder="Nome" />
-                <input className={Styles.inputStyle} type="text" value={tarefa.descricao} onChange={handleChange} name='descricao' placeholder="Descrição" />
-                <Autocomplete 
-                    className={Styles.inputStyle}
-                    value={prioridade}
-                    onChange={handlePrioridade}
-                    options={["ALTA", "MEDIA", "BAIXA"]}
-                    renderInput={(prioridade) => 
-                        <TextField {...prioridade} label="Prioridade" variant="outlined"/>
-                    }
-                />  
-            </div>
-            <button className={Styles.AddButton} type='submit'>Adicionar</button>
+                <div>
+                    <input className={Styles.inputStyle} type="text" value={tarefa.nome} onChange={handleChange} name='nome' placeholder="Nome" />
+                    <input className={Styles.inputStyle} type="text" value={tarefa.descricao} onChange={handleChange} name='descricao' placeholder="Descrição" />
+                    <Autocomplete 
+                        className={Styles.inputStyle}
+                        value={prioridade}
+                        onChange={handlePrioridade}
+                        options={["ALTA", "MEDIA", "BAIXA"]}
+                        renderInput={(prioridade) => 
+                            <TextField {...prioridade} label="Prioridade" variant="outlined"/>
+                        }
+                    />  
+                </div>
+                <button className={Styles.AddButton} type='submit'>Adicionar</button>
 
-        </form>
+            </form>
+        </div>
+        
     )
 
 }

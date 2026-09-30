@@ -1,5 +1,4 @@
 .formContainer {
-    background-color: violet;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +7,23 @@
 
 .inputStyle {
     width: 200px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: pink;
 }
 
 .AddButton {
     background-color: aquamarine;
-    height: 20px;
     border-radius: 10px;
+    margin: 10px;
+    font-size: 20px;
+    box-shadow: 10px;
+}
+
+.container {
+    background-color: lightblue;
+    border-radius: 100px;
+    padding: 20px;
+    margin: 20px;
 }
