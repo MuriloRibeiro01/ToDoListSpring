@@ -1,6 +1,8 @@
 .tasksTable {
-    background-color: aqua;
-    border-radius: 10px;
+    background-color: darkblue;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
 }
 
 .TaskTableContainer {
