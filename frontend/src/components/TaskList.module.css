@@ -16,5 +16,6 @@
     background-color: red;
     height: 20px;
     width: 30px;
+    border: none;
     border-radius: 10px;
 }
