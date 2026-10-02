@@ -14,7 +14,7 @@ function TaskList() {
     const [prioridade, setPrioridade] = useState(null);
 
     const [tarefa, setTarefa] = useState({
-        name: '',
+        nome: '',
         descricao: '',
     })
 
@@ -25,14 +25,26 @@ function TaskList() {
             .then(data => setTasks(data));
     }, []);
 
-    const abrirEditForm = () => {
+    const abrirEditForm = async (task) => {
+        setTarefa(task);
         setMostrarForm(true);
     }
 
-    const enviarTask = async (id) => {
-        await fetch(`http://localhost:8081/api/tasks/${id}`, {
+    const enviarTask = async (e) => {
+        
+        e.preventDefault();
+
+        const response = await fetch(`http://localhost:8081/api/tasks/${tarefa.id}`, {
             method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(tarefa),
         });
+
+        if (response.ok) {
+            setMostrarForm(false);
+            window.location.reload(true);
+        }
+
     }
 
     const handleChange = (event) => {
@@ -55,16 +67,20 @@ function TaskList() {
         <div className={ListStyles.TaskTableContainer}>
 
             {mostrarForm && (
-                <div>
-                    <form onSubmit={() => enviarTask(id)} className={EditStyles.formContainer}>
-                        <h1>Editar tarefa</h1>
+                <div className={EditStyles.formContainer}>
+                    <form onSubmit={enviarTask}>
+                        <div className={EditStyles.cabecalho}>
+                            <h2>Editar tarefa</h2>
+                            <button className={EditStyles.closeButton} type="button" onClick={() => setMostrarForm(false)}>X</button>
+                        </div>
+                        
 
-                        <div>
-                            <input className={EditStyles.inputStyle} type="text" value={setTarefa.nome} onChange={handleChange} name='nome' placeholder="Nome" />
-                            <input className={EditStyles.inputStyle} type="text" value={setTarefa.descricao} onChange={handleChange} name='descricao' placeholder="Descrição" />
+                        <div className={EditStyles.interiorContainer}>
+                            <input className={EditStyles.inputStyle} type="text" value={tarefa.nome} onChange={handleChange} name='nome' placeholder="Nome" />
+                            <input className={EditStyles.inputStyle} type="text" value={tarefa.descricao} onChange={handleChange} name='descricao' placeholder="Descrição" />
                             <Autocomplete 
                                 className={EditStyles.inputStyle}
-                                value={prioridade}
+                                value={tarefa.prioridade}
                                 onChange={handlePrioridade}
                                 options={["ALTA", "MEDIA", "BAIXA"]}
                                 renderInput={(prioridade) => 
@@ -72,8 +88,8 @@ function TaskList() {
                                 }
                             />  
                         </div>
-                        <button className={EditStyles.AddButton} type='submit'>Salvar</button>
-                        <button className={EditStyles.AddButton} onClick={() => setMostrarForm(false)}>Cancelar</button>
+                        <button className={EditStyles.salvarButton} type='submit'>Salvar</button>
+                        
                     </form>
                 </div>
             )}
@@ -107,7 +123,7 @@ function TaskList() {
                             <td>{task.prioridade}</td>
                             <td>
                                 <button className={ListStyles.DeleteButton} onClick={() => DeletarTarefa(task.id)}></button>
-                                <button className={EditStyles.EditButton} onClick={abrirEditForm}></button>
+                                <button className={EditStyles.EditButton} onClick={() => abrirEditForm(task)}></button>
                             </td>
                         </tr>        
                     )}
